@@ -1,3 +1,5 @@
+const db = require('../database');
+
 let data = [
     {
         id: 1,
@@ -54,5 +56,29 @@ module.exports = {
         }else{
             res.status(404).send('Not Found')
         }
+    },
+    loginsql : (req, res) => {
+        let { username, password } = req.body
+        let sql = `select username, password users where username = ${username} and password = ${password}`
+        db.query(sql, (err, results) => {
+            if(err){
+                res.status(404).send(err.message)
+            }
+            if(results.length !== 0){
+                res.status(200).send({
+                    status : 'Logged In',
+                    message : 'Data Successfully LoggedIn'
+                })
+            } else {
+                res.status(404).send({
+                    status : 'Not Found',
+                    message : 'Data is not found'
+                })
+            }
+        })
     }
+    // ,
+    // register : (req, res) => {
+
+    // }
 }

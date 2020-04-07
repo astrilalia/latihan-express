@@ -7,6 +7,7 @@ router.get('/getUsers', userController.getAllUsers)
 router.get('/getById/:id', userController.getUserById)
 router.get('/search-username', userController.searchByUsername)
 router.get('/login', userController.login)
-router.get('/getByRole', userController.searchByRole)
+router.get('/getByRole/', userController.searchByRole)
+router.post('/login-sql', userController.loginsql)
 
 module.exports = router
